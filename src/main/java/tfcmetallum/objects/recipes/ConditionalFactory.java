@@ -1,17 +1,15 @@
 package tfcmetallum.objects.recipes;
 
+import static tfcmetallum.ConfigTFCM.METALS;
+
 import java.util.function.BooleanSupplier;
 
 import com.google.gson.JsonObject;
 
-import net.dries007.tfc.ConfigTFC;
 import net.minecraft.util.JsonUtils;
 import net.minecraftforge.common.crafting.IConditionFactory;
 import net.minecraftforge.common.crafting.JsonContext;
-import tfcmetallum.ConfigTFCM;
-import tfcmetallum.TFCMetallum;
 import tfcmetallum.util.IsObtainable;
-
 
 public class ConditionalFactory implements IConditionFactory {
 	
@@ -20,59 +18,35 @@ public class ConditionalFactory implements IConditionFactory {
 		
 		String type = JsonUtils.getString(json, "config");
 		
-		if (type == "aluminium") {
-			return () -> ConfigTFCM.METALS.aluminium;
-		}
-		
-		if (type.toString() == "beryllium_copper") {
+		switch (type) {
+		case "aluminium":
+			return () -> METALS.aluminium;
+		case "beryllium_copper":
 			return () -> IsObtainable.beryllim_copper;
-		}
-		
-		if (type == "boron") {
-			return () -> ConfigTFCM.METALS.boron;
-		}
-		
-		if (type == "cobalt") {
-			return () -> ConfigTFCM.METALS.cobalt;
-		}
-		
-		if (type == "invar") {
-			return () -> ConfigTFCM.METALS.invar;
-		}
-		
-		if (type == "manyullyn") {
+		case "boron":
+			return () -> METALS.boron;
+		case "cobalt":
+			return () -> METALS.cobalt;
+		case "invar":
+			return () -> METALS.invar;
+		case "manyullyn":
 			return () -> IsObtainable.manyullyn;
-		}
-		
-		if (type == "mithril") {
+		case "mithril":
 			return () -> IsObtainable.mithril;
-		}
-		
-		if (type == "nickel_silver") {
-			return () -> ConfigTFCM.METALS.nickel_silver;
-		}
-		
-		if (type == "osmium") {
-			return () -> ConfigTFCM.METALS.osmium;
-		}
-		
-		if (type == "titanium") {
-			return () -> ConfigTFCM.METALS.titanum;
-		}
-		
-		if (type == "tungsten") {
-			return () -> ConfigTFCM.METALS.tungsten;
-		}
-		
-		if (type == "tungsten_steel") {
+		case "nickel_silver":
+			return () -> METALS.nickel_silver;
+		case "osmium":
+			return () -> METALS.osmium;
+		case "titanium":
+			return () -> METALS.titanum;
+		case "tungsten":
+			return () -> METALS.tungsten;
+		case "tungsten_steel":
 			return () -> IsObtainable.tungsten_steel;
-		}
-		
-		if (type == "zircaloy") {
+		case "zircaloy":
 			return () -> IsObtainable.zircaloy;
-		} else {
-			//Fail safe for log spam, should never be used
+		default:
 			return () -> false;
-			}
 		}
 	}
+}

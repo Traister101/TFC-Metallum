@@ -260,5 +260,5 @@ config.tfcmetallum.recipes.boron.tooltip=Register boron dust recipe via quern?
 
 # Veins
 
-config.tfcmetallum.manage=Manage Vein Data
-config.tfcmetallum.manage.tooltip=Dissable this if you are doing custom vein data (make sure to remove the ones you no longer need)
+config.tfcmetallum.veins.manage=Manage Vein Data
+config.tfcmetallum.veins.manage.tooltip=Disable this if you are doing custom vein data (make sure to remove the ones you no longer need)
